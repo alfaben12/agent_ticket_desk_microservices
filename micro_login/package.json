@@ -1,0 +1,29 @@
+{
+	"name": "express-mysql-crud",
+	"version": "1.0.0",
+	"description": "simple implementation of express and mysql",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon server.js",
+		"start": "node server.js"
+	},
+	"author": "Thariq Alfa",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"express-validator": "^5.3.1",
+		"hashids": "^1.2.2",
+		"jsonwebtoken": "^8.5.1",
+		"method-override": "^3.0.0",
+		"moment": "^2.24.0",
+		"mysql": "^2.15.0",
+		"mysql2": "^1.6.5",
+		"pug": "^2.0.3",
+		"sequelize": "^5.1.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.17.4"
+	}
+}
