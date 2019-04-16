@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
 
-const Member = sequelize.define(
-	'member',
+const Agent = sequelize.define(
+	'agent',
 	{
 		id: {
 			type: Sequelize.INTEGER,
@@ -12,8 +12,17 @@ const Member = sequelize.define(
 		status_id: {
 			type: Sequelize.INTEGER
 		},
-		balance: {
+		role_id: {
 			type: Sequelize.INTEGER
+		},
+		company_id: {
+			type: Sequelize.INTEGER
+		},
+		currency_name: {
+			type: Sequelize.STRING(255)
+		},
+		currency_convert: {
+			type: Sequelize.STRING(255)
 		},
 		username: {
 			type: Sequelize.STRING(255)
@@ -25,6 +34,9 @@ const Member = sequelize.define(
 			type: Sequelize.STRING(255)
 		},
 		profile_image: {
+			type: Sequelize.STRING(255)
+		},
+		background_image: {
 			type: Sequelize.STRING(255)
 		},
 		is_on: {
@@ -42,11 +54,17 @@ const Member = sequelize.define(
 		last_login_at: {
 			type: Sequelize.STRING(255)
 		},
+		last_update_at: {
+			type: Sequelize.STRING(255)
+		},
 		verify_at: {
 			type: Sequelize.STRING(255)
 		},
 		expired_at: {
 			type: Sequelize.STRING(255)
+		},
+		balance: {
+			type: Sequelize.INTEGER
 		}
 	},
 	{
@@ -56,5 +74,5 @@ const Member = sequelize.define(
 );
 
 module.exports = {
-	Member: Member
+	Agent: Agent
 };

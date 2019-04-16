@@ -9,7 +9,7 @@ module.exports = {
 	},
 
 	processLogin: async function(req, res) {
-		let member = await GlobalHelper.getMember(req, res);
+		let member = await GlobalHelper.getAgent(req, res);
 		let encrypt;
 		let token;
 		if (member != null) {

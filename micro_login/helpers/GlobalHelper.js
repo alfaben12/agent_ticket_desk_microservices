@@ -3,12 +3,12 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const Hashids = require('hashids');
 
-exports.getMember = function(req, res) {
+exports.getAgent = function(req, res) {
 	return new Promise((resolve, reject) => {
-		Login.Member
+		Login.Agent
 			.findOne({
 				where: {
-					email: req.body.txt_email,
+					username: req.body.txt_username,
 					password: req.body.txt_password
 				},
 				raw: true
