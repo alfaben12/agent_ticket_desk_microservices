@@ -12,4 +12,6 @@ router.get(
 	Recharges.processGetRechargeDetail
 );
 
+router.put('/processRechargeSynchronize/', RechargeJWT.JWTverify, Recharges.processRechargeSynchronize);
+
 module.exports = router;

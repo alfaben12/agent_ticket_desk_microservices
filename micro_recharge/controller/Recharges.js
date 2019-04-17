@@ -17,5 +17,9 @@ module.exports = {
 			message: 'Success Retrive.',
 			data: data
 		});
+	},
+
+	processRechargeSynchronize: async function(req, res) {
+		res.send('masok');
 	}
 };
