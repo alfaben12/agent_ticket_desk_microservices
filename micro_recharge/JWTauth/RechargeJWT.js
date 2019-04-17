@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 
 exports.JWTverify = function(req, res, next) {
 	const bearerHeader = req.headers['authorization'];
-	const token = bearerHeader;
+	const token = bearerHeader ? bearerHeader.split(' ')[1] : undefined;
 	if (token) {
-		jwt.verify(token, 'TicketDesk', function(err, payload) {
+		jwt.verify(token, process.env.JWT_KEY, function(err, payload) {
 			if (err) {
 				res.json({
 					result: false,
