@@ -1,6 +1,8 @@
 const Recharge = require('../model/Recharge');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const md5 = require('md5');
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 exports.glRechargeProduct = function(type = 'pulsa', status = 'active', operator = '') {
 	let whereSetup = {};
@@ -34,5 +36,40 @@ exports.glRechargeProduct = function(type = 'pulsa', status = 'active', operator
 	return Recharge.RechargeProduct.findAll({
 		where: whereSetup,
 		order: orderSetup
+	});
+};
+
+exports.glRechargeSupplier = async function() {
+	return new Promise((resolve, reject) => {
+		var path = 'https://testprepaid.mobilepulsa.net/v1/legacy/index';
+		var usernameTxt = '085606330792';
+		var passwordTxt = '4595c6c08c37d702';
+		var refIdTxt = 'SBLUCLE6';
+		var signTxt = md5(usernameTxt + passwordTxt + refIdTxt);
+
+		let data;
+		var doc =
+			`{
+			"commands"   : "inquiry",
+			"username"   : "085606330792",
+			"ref_id"     : "` +
+			refIdTxt +
+			`",
+			"sign"       : "` +
+			signTxt +
+			`"
+		}`;
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', path, true);
+		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		xhr.onload = function() {
+			if (xhr.readyState == 4 && xhr.status == '200') {
+				resolve(xhr.responseText);
+			} else {
+				reject('Error');
+			}
+		};
+		xhr.send(doc);
 	});
 };

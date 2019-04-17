@@ -20,6 +20,7 @@ module.exports = {
 	},
 
 	processRechargeSynchronize: async function(req, res) {
-		res.send('masok');
+		let data = await GlobalLibrary.glRechargeSupplier();
+		res.send(data);
 	}
 };
