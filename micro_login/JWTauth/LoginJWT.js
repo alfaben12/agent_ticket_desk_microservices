@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
+const dotenv = require('dotenv');
+dotenv.config();
 
 exports.JWTsign = function(param) {
 	return new Promise((resolve, reject) => {
@@ -8,33 +10,11 @@ exports.JWTsign = function(param) {
 				member_id: param,
 				generate_at: moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
 			},
-			'TicketDesk',
+			process.env.JWT_KEY,
 			function(err, token) {
 				resolve(token);
 				reject('Error');
 			}
 		);
 	});
-};
-
-exports.JWTverify = function(req, res, next) {
-	const token = req.body.jwtToken;
-	if (token) {
-		jwt.verify(token, 'TicketDesk', function(err, payload) {
-			if (err) {
-				res.json({
-					result: false,
-					message: 'Invalid Signature.'
-				});
-			} else {
-				req.payload = payload;
-				next();
-			}
-		});
-	} else {
-		res.json({
-			result: false,
-			message: 'Invalid Signature.'
-		});
-	}
 };
