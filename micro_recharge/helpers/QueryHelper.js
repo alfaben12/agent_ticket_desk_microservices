@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 exports.getDataOrder = async function(req) {
-	let recharge_id = req.orid;
+	let recharge_id = req.rechargeID;
 	return new Promise((resolve, reject) => {
 		Recharge.Recharge
 			.findOne({

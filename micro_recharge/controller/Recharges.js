@@ -8,7 +8,14 @@ module.exports = {
 		res.send(Recharge.tes);
 	},
 
-	processGetRechargeDetail: function(req, res) {
-		res.send('masok');
+	processGetRechargeDetail: async function(req, res) {
+		let order = await QueryHelper.getDataOrder(req.query);
+		let data = [ order ];
+		res.status(200).json({
+			rc: 200,
+			result: true,
+			message: 'Success Retrive.',
+			data: data
+		});
 	}
 };
